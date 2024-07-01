@@ -1,0 +1,112 @@
+public class Warehouse {
+    private String warehouseNumber;
+    private int availableSpace;
+    private String ownerName;
+    private String email;
+    private String phoneNumber;
+
+    public Warehouse(String warehouseNumber, int availableSpace, String ownerName, String email, String phoneNumber) {
+        this.warehouseNumber = warehouseNumber;
+        this.availableSpace = availableSpace;
+        this.ownerName = ownerName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    // Getters and Setters
+    public String getWarehouseNumber() {
+        return warehouseNumber;
+    }
+
+    public void setWarehouseNumber(String warehouseNumber) {
+        this.warehouseNumber = warehouseNumber;
+    }
+
+    public int getAvailableSpace() {
+        return availableSpace;
+    }
+
+    public void setAvailableSpace(int availableSpace) {
+        this.availableSpace = availableSpace;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    // Methods to add and remove goods
+    public void addGoods(int amount) {
+        if (amount > availableSpace) {
+            System.out.println("Not enough space in the warehouse. Remaining warehouse space: " + availableSpace + " units.");
+        } else {
+            availableSpace -= amount;
+            System.out.println("Added " + amount + " units of goods. Remaining warehouse space: " + availableSpace + " units.");
+        }
+    }
+
+    public void removeGoods(int amount) {
+        if (amount > (5000 - availableSpace)) {
+            System.out.println("Not enough goods in the warehouse. Current occupied space: " + (5000 - availableSpace) + " units.");
+        } else {
+            availableSpace += amount;
+            System.out.println("Removed " + amount + " units of goods. Remaining warehouse space: " + availableSpace + " units.");
+        }
+    }
+
+    public void checkOccupancy() {
+        int occupiedSpace = 5000 - availableSpace;
+        System.out.println("Occupied warehouse space: " + occupiedSpace + " units.");
+        System.out.println("Available warehouse space: " + availableSpace + " units.");
+    }
+
+    public void updateContact(String email, String phoneNumber) {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        System.out.println("Owner's contact details updated.");
+        System.out.println("New email: " + email);
+        System.out.println("New phone number: " + phoneNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "warehouseNumber='" + warehouseNumber + '\'' +
+                ", availableSpace=" + availableSpace +
+                ", ownerName='" + ownerName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+
+    public static void main(String[] args) {
+        Warehouse warehouse = new Warehouse("W123", 5000, "John Doe", "john.doe@example.com", "123-456-7890");
+        System.out.println(warehouse);
+
+        warehouse.addGoods(3000);
+        warehouse.removeGoods(1000);
+        warehouse.addGoods(2500);
+        warehouse.checkOccupancy();
+        warehouse.updateContact("owner@magazyn.pl", "+48 123 456 789");
+        warehouse.addGoods(1000);
+    }
+}
